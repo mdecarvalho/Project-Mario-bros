@@ -1,15 +1,26 @@
-html, body{
-    margin: 0;
-    padding: 0;
+html, body {
+    padding:0;
+    margin:0;
 }
-.background{
-    background-image: url("/img/background.jpg");
-    background-repeat: no-repeat;
-    background-size: 700%;
+
+.background {
+    /*background: url("img/background.jpg") 800px 800px no-repeat;*/
+    width: 100%;
+    min-height:100%;
+    z-index: 0;
+    background-attachment: local;
+    position: relative;
+    background-size: cover;
+     
+}
+
+#background {
+    min-height:620px;
     
 }
 
-.character{
-    position: relative;
-    margin-top: 37.70%;
+.character {
+    z-index: 100;
+    top: 81.75%;
+    position: absolute;
 }
