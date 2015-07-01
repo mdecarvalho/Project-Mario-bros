@@ -3,7 +3,7 @@ html, body{
     padding: 0;
 }
 .background{
-    background-image: url("/img/background.jpg");
+    background-image: url("../img/background.jpg");
     background-repeat: no-repeat;
     background-size: 700%;
     
@@ -11,5 +11,9 @@ html, body{
 
 .character{
     position: relative;
-    margin-top: 37.70%;
+    margin-top: 34%;
+    left:10px;
+    width: 20px;
+    height: 40px;
+    
 }
