@@ -42,8 +42,6 @@ $(document).ready(function(){
         condition = 0;
                 
     })
-    
-        
     $(document).keyup(function(event){
         if (event.keyCode == '39') {
            $(".character img").attr('src','/img/MarioStanding.jpg');
@@ -58,4 +56,15 @@ $(document).ready(function(){
         }
         condition = 1;
     })
+        $(window).keyup(function(event){
+            if (event.keyCode == '39') {
+               $(".character img").attr('src','/img/MarioStanding.jpg');
+               
+           }
+            
+            if (event.keyCode == '37') {
+               $(".character img")
+               .attr('src','/img/MarioStanding.jpg');  
+           }
+        })
 });
