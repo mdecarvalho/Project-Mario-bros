@@ -9,6 +9,7 @@ $(document).ready(function(){
         .attr('src','/img/Mario.gif')
         .css({transform: 'rotateY(360deg)'})
         .animate({left: '+=5'}, 5 , "linear");
+        $("#background").animate({left:'-=5'},1);
     } 
     function backward(condition){
         if(condition == 1){
@@ -18,6 +19,7 @@ $(document).ready(function(){
         .attr('src','/img/Mario.gif')
         .css({transform: 'rotateY(180deg)'})
         .animate({left: '-=5'}, 5, "linear");
+        $("#background").animate({left:'+=5'},1);
     }
     function jump(condition){
         if(condition == 1){
