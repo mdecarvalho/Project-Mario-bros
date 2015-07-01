@@ -8,18 +8,19 @@ html, body {
 .container {
     /*background: url("img/background.jpg") 800px 800px no-repeat;*/
     width: 500px;
-    height:400px;
+    min-height: 400px;
     margin: auto;
     z-index: 0;
     background-attachment: local;
     position: relative; 
     border: 1em solid black;
-    overflow: hidden;
+    overflow: inherit;
 }
 
 #background {
     height: inherit;
-    position: relative;
+    position:relative;
+    
 }
 
 .character {
