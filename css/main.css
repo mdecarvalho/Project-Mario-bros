@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html, body{
     margin: 0;
     padding: 0;
@@ -7,13 +8,39 @@ html, body{
     background-repeat: no-repeat;
     background-size: 700%;
     
+=======
+html, body {
+    padding:0;
+    margin:0;
+>>>>>>> origin/master
 }
 
-.character{
+.background {
+    /*background: url("img/background.jpg") 800px 800px no-repeat;*/
+    width: 100%;
+    min-height:100%;
+    z-index: 0;
+    background-attachment: local;
     position: relative;
+<<<<<<< HEAD
     margin-top: 34%;
     left:10px;
     width: 20px;
     height: 40px;
     
+=======
+    background-size: cover;
+     
+}
+
+#background {
+    min-height:620px;
+    
+}
+
+.character {
+    z-index: 100;
+    top: 81.75%;
+    position: absolute;
+>>>>>>> origin/master
 }
