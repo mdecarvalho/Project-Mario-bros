@@ -21,15 +21,17 @@ $(document).ready(function(){
         .animate({left: '-=5'}, 5, "linear");
         $("#background").animate({left:'+=5'},1);
     }
+    
     function jump(condition){
         if(condition == 1){
-            $(".character").animate({"top": "-=15%"}, 300, "linear");
-            $(".character").animate({"top": "+=15%"}, 300, "linear");
+            $("#jump_sound")[0].pause();
+            $("#jump_sound")[0].currentTime = 0; 
+            $(".character").animate({"top": "-=15%"}, 200, "linear");
+            $(".character").animate({"top": "+=15%"}, 200, "linear");
             $("#jump_sound")[0].play();
         }
     }
-    
-    
+    //gestion des déplacements
     $(document).keydown(function(event){
         if (event.keyCode == '39') {
            forward(condition);
@@ -44,6 +46,7 @@ $(document).ready(function(){
         condition = 0;
                 
     })
+    //gestion de la fin de déplacement
     $(document).keyup(function(event){
         if (event.keyCode == '39') {
            $(".character img").attr('src','/img/MarioStanding.jpg');
@@ -52,9 +55,6 @@ $(document).ready(function(){
         if (event.keyCode == '37') {
             $(".character img")
            .attr('src','/img/MarioStanding.jpg');   
-        }
-        if (event.keyCode == '37') {
-            $("#jump_sound")[0].pause();
         }
         condition = 1;
     })
