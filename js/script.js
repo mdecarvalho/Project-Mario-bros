@@ -3,25 +3,30 @@ $(document).ready(function(){
     var marioPos= $('.character');
     var charPos= marioPos.position();
     
-    function forward(condition){
+    function forward(condition,position){
         if(condition == 1){
             $(".character img").attr('src','/img/Mario.gif');
-        }   
-        $(".character")
-        .attr('src','/img/Mario.gif')
-        .css({transform: 'rotateY(360deg)'})
-        .animate({left: '+=5'}, 5 , "linear");
-        $("#background").animate({left:'-=5'},1);
+        }
+        if(charPos.left >= 0 && charPos.left <= 150) {
+            $(".character")
+                .css({transform: 'rotateY(360deg)'})
+                .animate({left: '+=5'}, 5 , "linear");   
+        }
+        else{
+            $("#background").animate({left:'-=5'},1);  
+        }
     } 
     
     function backward(condition){
         if(condition == 1){
             $(".character img").attr('src','/img/Mario.gif');
         }
-        $(".character")
-        .attr('src','/img/Mario.gif')
-        .css({transform: 'rotateY(180deg)'})
-        .animate({left: '-=5'}, 5, "linear");      
+         if(charPos.left > 0 ){
+             $(".character")
+                .attr('src','/img/Mario.gif')
+                .css({transform: 'rotateY(180deg)'})
+                .animate({left: '-=5'}, 5, "linear");      
+         }
     }
     
     function jump(condition){
@@ -37,18 +42,11 @@ $(document).ready(function(){
     $(document).keydown(function(event){
         charPos=marioPos.position();
         if (event.keyCode == '39') {
-            if(charPos.left >= 0 && charPos.left <= 150) {
-                forward(condition);  
-            }
-            if(charPos.left > 150 ) {
-                $("#background").animate({left:'-=5'},1);  
-            }
+            forward(condition,charPos);      
         }
 
         if (event.keyCode == '37') {
-            if(charPos.left > 0 ) {
-                backward(condition);
-            }
+            backward(condition,charPos);
         }
         
         if (event.keyCode == '38'){
