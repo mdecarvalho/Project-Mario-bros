@@ -18,8 +18,7 @@ $(document).ready(function(){
         $(".character")
         .attr('src','/img/Mario.gif')
         .css({transform: 'rotateY(180deg)'})
-        .animate({left: '-=5'}, 5, "linear");
-        $("#background").animate({left:'+=5'},1);
+        .animate({left: '-=5'}, 5, "linear");        $("#background").animate({left:'+=5'},1);
     }
     
     function jump(condition){
@@ -58,15 +57,4 @@ $(document).ready(function(){
         }
         condition = 1;
     })
-        $(window).keyup(function(event){
-            if (event.keyCode == '39') {
-               $(".character img").attr('src','/img/MarioStanding.jpg');
-               
-           }
-            
-            if (event.keyCode == '37') {
-               $(".character img")
-               .attr('src','/img/MarioStanding.jpg');  
-           }
-        })
 });
