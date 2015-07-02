@@ -1,6 +1,14 @@
 $(document).ready(function(){
     var condition = 1; // valeur qui évite le spam sur le traitement de keydown
 
+    function hurrySound(){
+        $("#soundtrack")[0].pause();
+        $("#hurry_sound")[0].play();
+        setTimeout('$("#hurry_sound")[0].pause();', 2499);
+        setTimeout('$("#hurry_soundtrack")[0].play();', 2500);
+    }
+    setTimeout(hurrySound, 50000);
+    
     function forward(condition, charPos){
         if(condition == 1){
             $(".character img").attr('src', '/img/Mario.gif');
