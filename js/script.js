@@ -1,5 +1,7 @@
 $(document).ready(function(){
     var condition = 1; // valeur qui évite le spam sur le traitement de keydown
+    var marioPos= $('.character');
+    var charPos= marioPos.position();
     
     function forward(condition){
         if(condition == 1){
@@ -11,15 +13,15 @@ $(document).ready(function(){
         .animate({left: '+=5'}, 5 , "linear");
         $("#background").animate({left:'-=5'},1);
     } 
+    
     function backward(condition){
         if(condition == 1){
-        $(".character img").attr('src','/img/Mario.gif');
+            $(".character img").attr('src','/img/Mario.gif');
         }
         $(".character")
         .attr('src','/img/Mario.gif')
         .css({transform: 'rotateY(180deg)'})
-        .animate({left: '-=5'}, 5, "linear");
-        $("#background").animate({left:'+=5'},1);
+        .animate({left: '-=5'}, 5, "linear");      
     }
     
     function jump(condition){
@@ -33,13 +35,22 @@ $(document).ready(function(){
     }
     //gestion des déplacements
     $(document).keydown(function(event){
+        charPos=marioPos.position();
         if (event.keyCode == '39') {
-           forward(condition);
+            if(charPos.left >= 0 && charPos.left <= 150) {
+                forward(condition);  
+            }
+            if(charPos.left > 150 ) {
+                $("#background").animate({left:'-=5'},1);  
+            }
         }
 
         if (event.keyCode == '37') {
-           backward(condition);
+            if(charPos.left > 0 ) {
+                backward(condition);
+            }
         }
+        
         if (event.keyCode == '38'){
             jump(condition);
         }
@@ -49,6 +60,7 @@ $(document).ready(function(){
     //gestion de la fin de déplacement
     $(document).keyup(function(event){
         if (event.keyCode == '39') {
+            
            $(".character img").attr('src','/img/MarioStanding.jpg');
         }
 
@@ -57,16 +69,5 @@ $(document).ready(function(){
            .attr('src','/img/MarioStanding.jpg');   
         }
         condition = 1;
-    })
-        $(window).keyup(function(event){
-            if (event.keyCode == '39') {
-               $(".character img").attr('src','/img/MarioStanding.jpg');
-               
-           }
-            
-            if (event.keyCode == '37') {
-               $(".character img")
-               .attr('src','/img/MarioStanding.jpg');  
-           }
-        })
+    })    
 });
