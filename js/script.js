@@ -69,5 +69,5 @@ $(document).ready(function(){
            .attr('src','/img/MarioStanding.jpg');   
         }
         condition = 1;
-    })    
+    })
 });
