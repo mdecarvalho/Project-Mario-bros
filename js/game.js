@@ -1,13 +1,12 @@
 var condition = 1; // valeur qui évite le spam sur le traitement de keydown
-//condition de fin de jeu
-var endGame = 0;// valeur qui fixe la fin du jeu
+var endGame;//condition de fin de jeu
 function hurrySound(){
-            $("#soundtrack")[0].pause();
-            $("#hurry_sound")[0].play();
-            setTimeout('$("#hurry_sound")[0].pause();', 2499);
-            setTimeout('$("#hurry_soundtrack")[0].play();', 2500);
-        }
-var condition = 0;
+    $("#soundtrack")[0].pause();
+    $("#hurry_sound")[0].play();
+    setTimeout('$("#hurry_sound")[0].pause();', 2499);
+    setTimeout('$("#hurry_soundtrack")[0].play();', 2500);
+}
+
 
 function forward(condition){
     if(condition == 1){
@@ -43,67 +42,69 @@ function jump(condition){
 }
 
 function death(){
-        $("#soundtrack")[0].pause();
-        $("#hurry_soundtrack")[0].pause();
-        $("#death_sound")[0].play();
-        $(".character img").attr('src', '/img/MarioDeath.png');
-        $("#jump_sound")[0].currentTime = 0;
-        $(".character").animate({"top": "-=10%"}, 1000, "linear");
-        $(".character").animate({"top": "+=100%"}, 1000, "linear");
-        endGame = 1;
-        
+    $("#soundtrack")[0].pause();
+    $("#hurry_soundtrack")[0].pause();
+    $("#death_sound")[0].play();
+    $(".character img").attr('src', '/img/MarioDeath.png');
+    $("#jump_sound")[0].currentTime = 0;
+    $(".character").animate({"top": "-=10%"}, 1000, "linear");
+    $(".character").animate({"top": "+=100%"}, 1000, "linear");
+    endGame = 1;
 }
 
-function game(){
-        $(document).keydown(function(event){
-            var charPos= $('.character').position();
-            if (event.keyCode == '39') {
-                if((charPos.left >= 0 && charPos.left <= 230) || $('#background').css('left') == "-5555px"){
-                    if(($('#background').css('left') == "-5555px") && charPos.left == 280){
-                        $("#soundtrack")[0].pause();
-                        $("#hurry_soundtrack")[0].pause();
-                        $("#ending_sound")[0].play();
-                        $(".character").hide();
-                        $(".win").show();
-                        endGame = 1;
-                        
-                        
-                    }
-                    else{
-                        forward(condition);
-                    }
+function game(val){
+    endGame = val;
+    $(document).keydown(function(event){
+        var charPos= $('.character').position();
+        if (event.keyCode == '39') {
+            if((charPos.left >= 0 && charPos.left <= 230) || $('#background').css('left') == "-5555px"){
+                //fin de la map
+                if(($('#background').css('left') == "-5555px") && charPos.left == 280){
+                    $("#soundtrack")[0].pause();
+                    $("#hurry_soundtrack")[0].pause();
+                    $("#ending_sound")[0].play();
+                    $(".character").hide();
+                    $(".win").show();
+                    endGame = 1;
+
+
                 }
                 else{
-                    $("#background").animate({left:'-=5'},1);
-                    if( condition == 1){
-                        $(".character img").attr('src', '/img/Mario.gif');
-                    }
-                }            
+                    forward(condition);
+                }
             }
+            else{
+                // défilement du background au lieu du personnage lorsqu'il arrive au centre de l'écran
+                $("#background").animate({left:'-=5'},1);
+                if( condition == 1){
+                    $(".character img").attr('src', '/img/Mario.gif');
+                }
+            }            
+        }
 
-            if (event.keyCode == '37') {
-                backward(condition, charPos);
-            }
+        if (event.keyCode == '37') {
+            backward(condition, charPos);
+        }
 
-            if (event.keyCode == '38'){
-                jump(condition)
-            }
-            condition = 0;
+        if (event.keyCode == '38'){
+            jump(condition)
+        }
+        condition = 0;
 
-        })
+    })
 
-        //gestion de la fin de déplacement
-        $(document).keyup(function(event){
-            if (event.keyCode == '39') {
-               $(".character img").attr('src', '/img/MarioStanding.jpg');
-            }
+    //gestion de la fin de déplacement
+    $(document).keyup(function(event){
+        if (event.keyCode == '39') {
+           $(".character img").attr('src', '/img/MarioStanding.jpg');
+        }
 
-            if (event.keyCode == '37') {
-                $(".character img")
-               .attr('src', '/img/MarioStanding.jpg');
-            }
-            condition = 1;
-        })
-        console.log($("body").attr('endGame'));
-
+        if (event.keyCode == '37') {
+            $(".character img")
+           .attr('src', '/img/MarioStanding.jpg');
+        }
+        condition = 1;
+    })
+    
+    return endGame;
 }
