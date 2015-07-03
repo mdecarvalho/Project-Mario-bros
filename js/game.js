@@ -44,6 +44,7 @@ function jump(condition){
 function death(){
         $("#soundtrack").remove();
         $("#hurry_soundtrack").remove();
+        $("#jump_sound").remove();
         $("#death_sound")[0].play();
         $(".character img").attr('src', '/img/MarioDeath.png');
         $("#jump_sound")[0].currentTime = 0;
