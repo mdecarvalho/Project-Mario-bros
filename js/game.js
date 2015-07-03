@@ -36,7 +36,7 @@ function jump(condition){
         $(".character").animate({"top": "-=15%"}, 200, "linear");
         $(".character").animate({"top": "+=15%"}, 200, "linear");
         $("#jump_sound")[0].play();
-        setTimeout('$(".character img").attr("src", "/img/MarioStanding.jpg")',200);    
+        setTimeout('$(".character img").attr("src", "/img/MarioStanding.jpg")',200); 
     }
 }
 
@@ -45,10 +45,10 @@ function death(){
         $("#hurry_soundtrack").remove();
         $("#jump_sound").remove();
         $("#death_sound")[0].play();
+        $(".gameOver").show();
         $(".character img").attr('src', '/img/MarioDeath.png');
         $(".character").animate({"top": "-=10%"}, 1000, "linear");
         $(".character").animate({"top": "+=100%"}, 1000, "linear");
-        $(".gameOver").show();
         setTimeout('$(".character").remove()', 2000);
 }  
 
@@ -59,6 +59,7 @@ function game(){
             if((charPos.left >= 0 && charPos.left <= 230) || $('#background').css('left') == "-5555px"){
                 //fin de la map
                 if(($('#background').css('left') == "-5555px") && charPos.left == 280){
+                    $("#jump_sound").remove();
                     $("#soundtrack")[0].pause();
                     $("#hurry_soundtrack")[0].pause();
                     $("#ending_sound")[0].play();
