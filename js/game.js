@@ -60,6 +60,7 @@ function game(){
             if (event.keyCode == '39') {
                 if((charPos.left >= 0 && charPos.left <= 230) || $('#background').css('left') == "-5555px"){
                     if(($('#background').css('left') == "-5555px") && charPos.left == 280){
+                        $("#soundtrack")[0].pause();
                         $("#hurry_soundtrack")[0].pause();
                         $("#ending_sound")[0].play();
                         $(".character").hide();
