@@ -1,4 +1,5 @@
 var condition = 1; // valeur qui évite le spam sur le traitement de keydown
+var dead = 0;
 function hurrySound(){
     $("#soundtrack")[0].pause();
     $("#hurry_sound")[0].play();
@@ -48,15 +49,16 @@ function death(){
         $("#jump_sound")[0].currentTime = 0;
         $(".character").animate({"top": "-=10%"}, 1000, "linear");
         $(".character").animate({"top": "+=100%"}, 1000, "linear");
-        $(".character").remove();
         $(".gameOver").show();
+        setTimeout('$(".character").remove()', 2000);
+        dead = 1;
 }  
 
 function game(){
     $(document).keydown(function(event){
         var charPos= $('.character').position();
         if (event.keyCode == '39') {
-            if((charPos.left >= 0 && charPos.left <= 230) || $('#background').css('left') == "-5555px"){
+            if((charPos.left >= 0 && charPos.left <= 230 && dead == 0) || $('#background').css('left') == "-5555px"){
                 //fin de la map
                 if(($('#background').css('left') == "-5555px") && charPos.left == 280){
                     $("#soundtrack")[0].pause();
