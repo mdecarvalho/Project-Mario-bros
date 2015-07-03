@@ -29,7 +29,7 @@ function backward(condition, charPos){
 }
 
 function jump(condition){
-    if(condition == 1 && endGame == 0){
+    if(condition == 1){
         $(".character img").attr('src', '/img/MarioJumping.png');
         $("#jump_sound")[0].pause();
         $("#jump_sound")[0].currentTime = 0;
