@@ -1,5 +1,4 @@
 var condition = 1; // valeur qui évite le spam sur le traitement de keydown
-var endGame;//condition de fin de jeu
 function hurrySound(){
     $("#soundtrack")[0].pause();
     $("#hurry_sound")[0].play();
@@ -42,19 +41,18 @@ function jump(condition){
 }
 
 function death(){
-    $("#soundtrack")[0].pause();
-    $("#hurry_soundtrack")[0].pause();
-    $("#death_sound")[0].play();
-    $(".character img").attr('src', '/img/MarioDeath.png');
-    $("#jump_sound")[0].currentTime = 0;
-    $(".character").animate({"top": "-=10%"}, 1000, "linear");
-    $(".character").animate({"top": "+=100%"}, 1000, "linear");
-    $(".gameOver").show();
-    endGame = 1;
-}
+        $("#soundtrack").remove();
+        $("#hurry_soundtrack").remove();
+        $("#death_sound")[0].play();
+        $(".character img").attr('src', '/img/MarioDeath.png');
+        $("#jump_sound")[0].currentTime = 0;
+        $(".character").animate({"top": "-=10%"}, 1000, "linear");
+        $(".character").animate({"top": "+=100%"}, 1000, "linear");
+        $(".character").remove();
+        $(".gameOver").show();
+}  
 
-function game(val){
-    endGame = val;
+function game(){
     $(document).keydown(function(event){
         var charPos= $('.character').position();
         if (event.keyCode == '39') {
@@ -65,11 +63,10 @@ function game(val){
                     $("#hurry_soundtrack")[0].pause();
                     $("#ending_sound")[0].play();
                     $(".character").hide();
+                    $("character").remove();
+                    $("#death_sound").remove();
                     $(".win").show();
-                    $(".timer").hide();
-                    endGame = 1;
-
-
+                    $(".timer").hide();  
                 }
                 else{
                     forward(condition);
@@ -107,8 +104,6 @@ function game(val){
         }
         condition = 1;
     })
-    
-    return endGame;
 }
 
 var sec = 50;
