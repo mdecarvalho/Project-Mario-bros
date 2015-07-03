@@ -66,6 +66,7 @@ function game(val){
                     $("#ending_sound")[0].play();
                     $(".character").hide();
                     $(".win").show();
+                    $(".timer").hide();
                     endGame = 1;
 
 
@@ -109,3 +110,13 @@ function game(val){
     
     return endGame;
 }
+
+var sec = 50;
+var timer = setInterval(function() { 
+   $('.timer').text("Time: " + sec--);
+   if (sec == -1) {
+      $('.timer').fadeOut('fast');
+      clearInterval(timer);
+   } 
+}, 1000);
+

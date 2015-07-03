@@ -3,6 +3,6 @@ $(document).ready(function(){
     endGame = game(endGame);
     if(endGame == 0){
         setTimeout(hurrySound, 35000);
-        setTimeout(death, 50000);        
+        setTimeout(death, 52000);
     }
 });
