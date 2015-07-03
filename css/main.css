@@ -36,3 +36,12 @@ html, body {
     right: 20px;
     
 }
+.gameOver{
+    z-index: 10;
+    position: absolute;
+    display: none;
+    top: 50px;
+    left:0;
+    right: 0;
+    
+}
