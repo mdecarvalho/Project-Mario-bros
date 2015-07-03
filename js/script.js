@@ -52,6 +52,7 @@ $(document).ready(function(){
                     $("#hurry_soundtrack")[0].pause();
                     $("#ending_sound")[0].play();
                     $(".character").hide();
+                    $(".win").show();
                 }
                 else{
                     forward(condition);

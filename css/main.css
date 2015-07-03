@@ -28,3 +28,11 @@ html, body {
     top: 81.75%;
     position: absolute;
 }
+.win{
+    z-index: 10;
+    position: absolute;
+    display: none;
+    top: 50px;
+    right: 20px;
+    
+}
