@@ -38,7 +38,7 @@ html, body {
 }
 
 
-.timer-container {
+.timer {
     z-index:100;
     font: 1.5em bold;
     font-family: Arial;
@@ -51,9 +51,6 @@ html, body {
     left: 190px;
 }
 
-.timer {
-    display: inline;
-}
 
 .gameOver{
     z-index: 10;
