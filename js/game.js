@@ -49,6 +49,7 @@ function death(){
     $("#jump_sound")[0].currentTime = 0;
     $(".character").animate({"top": "-=10%"}, 1000, "linear");
     $(".character").animate({"top": "+=100%"}, 1000, "linear");
+    $(".gameOver").show();
     endGame = 1;
 }
 
