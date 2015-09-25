@@ -1,17 +1,17 @@
 html, body {
     padding:0;
     margin:0;
+    font-size: 16px;
 }
 
 .container {
-    /*background: url("img/background.jpg") 800px 800px no-repeat;*/
     top: 100px;
     width: 500px;
-    height: 400px;
+    height: 448px;
     margin: auto;
     z-index: 0;
     background-attachment: local;
-    position: relative; 
+    position: relative;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 10px 1px 5px #656565;
@@ -20,23 +20,141 @@ html, body {
 #background {
     height: inherit;
     position:relative;
-    
+    background-image: url("../img/background.png");
+    left: 0px;
+    height: 448px;
+    width: 6784px;
+
 }
 
+/*****
+coin box
+****/
+.coin-box{
+    background-color: black;
+    opacity: 0.3;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+
+}
+
+#coin-box1{
+    bottom: 144px;
+    left: 512px;
+}
+#coin-box2{
+    bottom: 144px;
+    left: 672px;
+}
+#coin-box3{
+    bottom:272px;
+    left: 704px;
+}
+#coin-box4{
+    bottom: 144px;
+    left: 736px;
+}
+#coin-box5{
+    bottom: 177px;
+    left: 2080px;
+}
+#coin-box6{
+    bottom:272px;
+    left: 3008px;
+}
+#coin-box7{
+    bottom: 144px;
+    left: 3392px;
+}
+#coin-box8{
+    bottom: 144px;
+    left: 3488px;
+}
+#coin-box9{
+    bottom: 272px;
+    left: 3488px;
+}
+#coin-box10{
+    bottom: 144px;
+    left: 3584px;
+}
+#coin-box11{
+    bottom: 272px;
+    left: 4127px;
+}
+#coin-box12{
+    bottom: 272px;
+    left: 4159px;
+}
+#coin-box13{
+    bottom: 144px;
+    left: 5439px;
+}
+
+/***
+
+pipes
+
+***/
+.pipe{
+    background-color: black;
+    opacity: 0.3;
+    width:64px;
+    position: absolute;
+    bottom:47px;
+}
+
+.small-pipe{
+    height:65px;
+}
+.medium-pipe{
+    height:97px;
+}
+.large-pipe{
+    height:129px;
+}
+#pipe1{
+    left:896px;
+}
+#pipe2{
+    left:1216px;
+}
+#pipe3{
+    left:1472px;
+}
+#pipe4{
+    left:1824px;
+}
+#pipe5{
+    left:5216px;
+}
+#pipe6{
+    left:5728px;
+}
+
+/***
+
+character
+
+***/
 .character {
     z-index: 100;
-    top: 81.75%;
+    bottom: 44px;
     position: absolute;
 }
+.character img{
+    height: 30px;
+}
+
 .win{
     z-index: 10;
     position: absolute;
     display: none;
     top: 50px;
     right: 20px;
-    
-}
 
+}
 
 .timer {
     z-index:100;
@@ -46,11 +164,10 @@ html, body {
     color: white;
     width: 100px;
     margin: 0 auto;
-    position: relative;
-    top: -290px;
-    left: 190px;
+    top: 20px;
+    right: 10px;
+    position: absolute;
 }
-
 
 .gameOver{
     z-index: 10;
@@ -58,6 +175,4 @@ html, body {
     display: none;
     top: 100px;
     left: 100px;
-    
 }
-
