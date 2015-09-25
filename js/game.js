@@ -1,5 +1,12 @@
 var condition = 1; // valeur qui évite le spam sur le traitement de keydown
-var sec = 180; //MAX time of the game
+var sec = 65; ////MAX time of the game
+
+function hurrySound(){
+    $("#soundtrack")[0].pause();
+    $("#hurry_sound")[0].play();
+    setTimeout('$("#hurry_sound")[0].pause();', 2499);
+    setTimeout('$("#hurry_soundtrack")[0].play();', 2500);
+}
 
 function forward(condition){
     if(condition == 1){
