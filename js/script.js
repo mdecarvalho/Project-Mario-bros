@@ -1,5 +1,5 @@
 $(document).ready(function(){
     game();
-    setTimeout(hurrySound, 35000);
-    setTimeout(death, 51000);
+    setTimeout(hurrySound, (sec-60)*1000);
+    setTimeout(death, (sec+1)*1000);
 });

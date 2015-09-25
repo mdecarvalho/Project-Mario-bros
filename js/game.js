@@ -1,11 +1,5 @@
 var condition = 1; // valeur qui évite le spam sur le traitement de keydown
-function hurrySound(){
-    $("#soundtrack")[0].pause();
-    $("#hurry_sound")[0].play();
-    setTimeout('$("#hurry_sound")[0].pause();', 2499);
-    setTimeout('$("#hurry_soundtrack")[0].play();', 2500);
-}
-
+var sec = 180; //MAX time of the game
 
 function forward(condition){
     if(condition == 1){
@@ -33,8 +27,8 @@ function jump(condition){
         $(".character img").attr('src', 'img/MarioJumping.png');
         $("#jump_sound")[0].pause();
         $("#jump_sound")[0].currentTime = 0;
-        $(".character").animate({"bottom": "+=15%"}, 200, "linear");
-        $(".character").animate({"bottom": "-=15%"}, 200, "linear");
+        $(".character").animate({"bottom": "+=135px"}, 200, "linear");
+        $(".character").animate({"bottom": "-=135px"}, 200, "linear");
         $("#jump_sound")[0].play();
         setTimeout('$(".character img").attr("src", "img/MarioStanding.jpg")',200);
     }
@@ -108,7 +102,6 @@ function game(){
     })
 }
 
-var sec = 50;
 var timer = setInterval(function() {
    $('.timer').text("TIME: " + sec--);
    if (sec == -1) {
