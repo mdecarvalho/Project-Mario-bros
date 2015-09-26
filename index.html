@@ -9,33 +9,35 @@
 
 
 <body>
-        <audio  src="sounds/Mario.mp3" loop="loop" id="soundtrack"></audio>
+        <audio  src="1sounds/Mario.mp3" loop="loop" id="soundtrack"></audio>
         <audio  src="sounds/saut.wav" id="jump_sound"></audio>
         <audio  src="sounds/coin.wav" id="coin_sound"></audio>
+        <audio  src="sounds/bump.wav" id="bump_sound"></audio>
         <audio  src="sounds/Hurry.mp3" id="hurry_sound"></audio>
         <audio  src="sounds/Player%20Dies.mp3" id="death_sound"></audio>
-        <audio  src="sounds/Hurry%20Overworld.mp3" id="hurry_soundtrack" loop="loop"></audio>
+        <audio  src="1sounds/Hurry%20Overworld.mp3" id="hurry_soundtrack" loop="loop"></audio>
         <audio  src="sounds/Castle%20Complete.mp3" id="ending_sound"></audio>
 
     <div class="container">
         <div class="timer"></div>
+        <div class="coins"><img src="img/coin.gif"><p> : 0</p></div>
         <div id="background"alt="background">
             <div class="character">
                 <img src="img/MarioStanding.jpg" alt="Mario">
             </div>
-            <div class="coin-box" id="coin-box1"></div>
-            <div class="coin-box" id="coin-box2"></div>
-            <div class="coin-box" id="coin-box3"></div>
-            <div class="coin-box" id="coin-box4"></div>
-            <div class="coin-box" id="coin-box5"></div>
-            <div class="coin-box" id="coin-box6"></div>
-            <div class="coin-box" id="coin-box7"></div>
-            <div class="coin-box" id="coin-box8"></div>
-            <div class="coin-box" id="coin-box9"></div>
-            <div class="coin-box" id="coin-box10"></div>
-            <div class="coin-box" id="coin-box11"></div>
-            <div class="coin-box" id="coin-box12"></div>
-            <div class="coin-box" id="coin-box13"></div>
+            <div class="coin-block block" id="coin-block1"></div>
+            <div class="coin-block block" id="coin-block2"></div>
+            <div class="coin-block block" id="coin-block3"></div>
+            <div class="coin-block block" id="coin-block4"></div>
+            <div class="coin-block block" id="coin-block5"></div>
+            <div class="coin-block block" id="coin-block6"></div>
+            <div class="coin-block block" id="coin-block7"></div>
+            <div class="coin-block block" id="coin-block8"></div>
+            <div class="coin-block block" id="coin-block9"></div>
+            <div class="coin-block block" id="coin-block10"></div>
+            <div class="coin-block block" id="coin-block11"></div>
+            <div class="coin-block block" id="coin-block12"></div>
+            <div class="coin-block block" id="coin-block13"></div>
             <div class="pipe small-pipe" id="pipe1"></div>
             <div class="pipe medium-pipe" id="pipe2"></div>
             <div class="pipe large-pipe" id="pipe3"></div>
@@ -51,7 +53,7 @@
         <div class="gameOver">
             <img src="img/gameOver.png" alt="win" height="100" width="300px">
         </div>
-        
+
     </div><!-- div.container -->
 
     <script src="js/jquery.js"></script>

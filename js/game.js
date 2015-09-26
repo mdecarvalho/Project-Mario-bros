@@ -3,6 +3,7 @@ var sec = 180; ////MAX time of the game
 var initialPosition = 235; // initialization of the
 var leftLimit = 0;
 var endGame = 6525;
+var coins = 0; //nupmber of coins collected
 
 function hurrySound(){
     $("#soundtrack")[0].pause();
@@ -11,28 +12,74 @@ function hurrySound(){
     setTimeout('$("#hurry_soundtrack")[0].play();', 2500);
 }
 
-function collision(){
+function addCoin(){
+        coins++;
+        $('.coins p').text(" : " + coins);
+        console.log(coins);
+}
+
+function topCollision(){
+        var charPos = $('.character').position();
         ok = 0;
-        if( (((charPos.left) + 23 >= $('div').position().left)) && ((charPos.left) + 38 <= $('div').position().left +55)&& (charPos.top == $('div').position().top + 32)){
-                ok = 1;
-                $("#coin_sound")[0].play();
-        }
+        $('div.block').each(function(){
+            if(((charPos.top > $(this).position().top + 32) && ((charPos.left) + 23 >= $(this).position().left)) && ((charPos.left)<= $(this).position().left + 32)){
+                    if($(this).is( ".coin-block" )){
+                        ok = 1;
+                        $("#coin_sound")[0].pause();
+                        $("#coin_sound")[0].currentTime = 0;
+                        $("#coin_sound")[0].play();
+                        addCoin();
+                        $(this).addClass("empty-block");
+                        $(this).removeClass("coin-block");
+                    }
+                    else{
+                        $("#jump_sound")[0].pause();
+                        $("#bump_sound")[0].pause();
+                        $("#bump_sound")[0].currentTime = 0;
+                        $("#bump_sound")[0].play();
+                    }
+            }
+        });
+
         return ok;
+}
+
+function frontCollision(){
+    var charPos = $('.character').position();
+    var ok = 0;
+    $('div.pipe').each(function(){
+        if(((charPos.left) + 23 >= $(this).position().left) && ((charPos.left)<= $(this).position().left + 64)){
+            ok = 1;
+        }
+    });
+    return ok;
+}
+
+function backCollision(){
+    var charPos = $('.character').position();
+    var ok = 0;
+    $('div.pipe').each(function(){
+        if(((charPos.left) + 23 >= $(this).position().left) && ((charPos.left)<= $(this).position().left + 64)){
+            ok = 1;
+        }
+    });
+    return ok;
 }
 
 function forward(condition){
     if(condition == 1){
         $(".character img").attr('src', 'img/Mario.gif');
     }
-        $(".character")
-            .css({transform: 'rotateY(360deg)'})
-            .animate({left: '+=5'}, 5 , "linear");
-        if($('.character').position().left >= endGame){
-            win();
-        }
-        if ($('.character').position().left >235) {
-            leftLimit = $('.character').position().left - 235;
-        }
+    $(".character")
+        .css({transform: 'rotateY(360deg)'})
+        .animate({left: '+=5'}, 5 , "linear");
+    if($('.character').position().left >= endGame){
+        win();
+    }
+    if ($('.character').position().left >235) {
+        leftLimit = $('.character').position().left - 235;
+    }
+
 }
 
 function backward(condition, charPos){
@@ -57,8 +104,10 @@ function jump(condition){
         $("#jump_sound")[0].pause();
         $("#jump_sound")[0].currentTime = 0;
         $(".character").animate({"bottom": "+=135px"}, 200, "linear");
-        $(".character").animate({"bottom": "-=135px"}, 200, "linear");
         $("#jump_sound")[0].play();
+        topCollision();
+        $(".character").animate({"bottom": "-=135px"}, 200, "linear");
+
         setTimeout('$(".character img").attr("src", "img/MarioStanding.jpg")',200);
     }
 }
@@ -92,20 +141,21 @@ function game(){
     $(document).keydown(function(event){
         var charPos= $('.character').position();
         console.log(charPos);
-        console.log(leftLimit);
         if (event.keyCode == '39') {
-            if(charPos.left >= leftLimit && charPos.left <= initialPosition && charPos.left <= endGame){
-                forward(condition);
-            }
-            else{
-                // défilement du background au lieu du personnage lorsqu'il arrive au centre de l'écran
-                if(charPos.left != 0 && charPos.left < endGame){
-                    $("#background").animate({left:'-=5'},1);
-
+            if(!frontCollision()){
+                if(charPos.left >= leftLimit && charPos.left <= initialPosition && charPos.left <= endGame){
+                    forward(condition);
                 }
-                forward(condition);
-                if( condition == 1){
-                    $(".character img").attr('src', 'img/Mario.gif');
+                else{
+                    // défilement du background au lieu du personnage lorsqu'il arrive au centre de l'écran
+                    if(charPos.left != 0 && charPos.left < endGame){
+                        $("#background").animate({left:'-=5'},1);
+
+                    }
+                    forward(condition);
+                    if( condition == 1){
+                        $(".character img").attr('src', 'img/Mario.gif');
+                    }
                 }
             }
         }

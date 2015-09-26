@@ -14,7 +14,7 @@ html, body {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 10px 1px 5px #656565;
+    block-shadow: 10px 1px 5px #656565;
 }
 
 #background {
@@ -28,66 +28,67 @@ html, body {
 }
 
 /*****
-coin box
+coin block
 ****/
-.coin-box{
-    background-color: black;
-    opacity: 0.3;
+.block{
     position: absolute;
     width: 32px;
     height: 32px;
-
+}
+.empty-block{
+    background-image: url(../img/EmptyBlock.png);
+    background-size: 100%;
 }
 
-#coin-box1{
+#coin-block1{
     bottom: 144px;
     left: 512px;
 }
-#coin-box2{
+#coin-block2{
     bottom: 144px;
     left: 672px;
 }
-#coin-box3{
+#coin-block3{
     bottom:272px;
     left: 704px;
 }
-#coin-box4{
+#coin-block4{
     bottom: 144px;
     left: 736px;
 }
-#coin-box5{
+#coin-block5{
     bottom: 177px;
     left: 2080px;
 }
-#coin-box6{
+#coin-block6{
     bottom:272px;
     left: 3008px;
 }
-#coin-box7{
+#coin-block7{
     bottom: 144px;
     left: 3392px;
 }
-#coin-box8{
+#coin-block8{
     bottom: 144px;
     left: 3488px;
 }
-#coin-box9{
+#coin-block9{
     bottom: 272px;
     left: 3488px;
 }
-#coin-box10{
+#coin-block10{
     bottom: 144px;
     left: 3584px;
 }
-#coin-box11{
+#coin-block11{
     bottom: 272px;
     left: 4127px;
 }
-#coin-box12{
+#coin-block12{
     bottom: 272px;
     left: 4159px;
 }
-#coin-box13{
+#coin-block13{
     bottom: 144px;
     left: 5439px;
 }
@@ -98,8 +99,6 @@ pipes
 
 ***/
 .pipe{
-    background-color: black;
-    opacity: 0.3;
     width:64px;
     position: absolute;
     bottom:47px;
@@ -154,6 +153,27 @@ character
     top: 50px;
     right: 20px;
 
+}
+
+.coins{
+        position: absolute;
+        top: 20px;
+        right: 150px;
+        font: 1.5em bold;
+        font-family: Arial;
+        font-weight: 700;
+        color: white;
+        z-index:100;
+        height: 24px;
+        width:100px;
+}
+.coins img{
+    height: 20px;
+    line-height: 24px;
+}
+.coins p{
+    display: inline-block;
+    margin: 0px;
 }
 
 .timer {
