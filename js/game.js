@@ -23,7 +23,6 @@ function topCollision(){
         $('div.block').each(function(){
             if((( (charPos.top) - 135 <= ($(this).position().top + 32)) && ((charPos.left) + 23 >= $(this).position().left)) && ((charPos.left)<= $(this).position().left + 32)){
                 if($(this).is( ".coin-block" )){
-                    ok = 1;
                     $("#coin_sound")[0].pause();
                     $("#coin_sound")[0].currentTime = 0;
                     $("#coin_sound")[0].play();
@@ -37,6 +36,7 @@ function topCollision(){
                     $("#bump_sound")[0].currentTime = 0;
                     $("#bump_sound")[0].play();
                 }
+                ok=$(this).position().top + 32;
             }
         });
 
@@ -98,14 +98,19 @@ function backward(condition, charPos){
 }
 
 function jump(condition){
+    var jumpHeight = 135;
     if(condition == 1){
         $(".character img").attr('src', 'img/MarioJumping.png');
         $("#jump_sound")[0].pause();
         $("#jump_sound")[0].currentTime = 0;
-        $(".character").animate({"top": "-=135px"}, 200, "linear");
         $("#jump_sound")[0].play();
-        topCollision();
-        $(".character").animate({"top": "+=135px"}, 200, "linear");
+        var temp = 370 - topCollision();
+        if(temp < jumpHeight && temp != 0){
+            jumpHeight=temp;
+        }
+
+        $(".character").animate({"top": "-="+ jumpHeight}, 200, "linear");
+        $(".character").animate({"top": "+="+jumpHeight}, 200, "linear");
 
         setTimeout('$(".character img").attr("src", "img/MarioStanding.jpg")',200);
     }
@@ -127,8 +132,8 @@ function death(){
 
 function win(){
     $("#jump_sound").remove();
-    $("#soundtrack")[0].pause();
-    $("#hurry_soundtrack")[0].pause();
+    $("#soundtrack")[0].remove();
+    $("#hurry_soundtrack").remove();
     $("#ending_sound")[0].play();
     $(".character").hide();
     $("character").remove();
