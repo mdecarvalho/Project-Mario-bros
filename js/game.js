@@ -58,7 +58,7 @@ function backCollision(){
     var charPos = $('.character').position();
     var ok = 0;
     $('div.pipe').each(function(){
-        if(((charPos.left) + 23 >= $(this).position().left) && ((charPos.left)<= $(this).position().left + 64)){
+        if(((charPos.left)<= $(this).position().left + 64 ) && ((charPos.left + 28)>= $(this).position().left)){
             ok = 1;
         }
     });
@@ -167,13 +167,15 @@ function game(){
         }
 
         if (event.keyCode == '37') {
-            if (charPos.left > leftLimit + 5) {
-                backward(condition, charPos);
-            }
+            if(true){
+                if (charPos.left > leftLimit + 5) {
+                    backward(condition, charPos);
+                }
+           }
         }
 
         if (event.keyCode == '38'){
-            jump(condition)
+            jump(condition);
         }
         condition = 0;
 
