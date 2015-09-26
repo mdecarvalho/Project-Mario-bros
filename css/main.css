@@ -139,7 +139,7 @@ character
 ***/
 .character {
     z-index: 100;
-    bottom: 44px;
+    top: 370px;
     position: absolute;
 }
 .character img{

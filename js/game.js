@@ -15,29 +15,28 @@ function hurrySound(){
 function addCoin(){
         coins++;
         $('.coins p').text(" : " + coins);
-        console.log(coins);
 }
 
 function topCollision(){
         var charPos = $('.character').position();
         ok = 0;
         $('div.block').each(function(){
-            if(((charPos.top > $(this).position().top + 32) && ((charPos.left) + 23 >= $(this).position().left)) && ((charPos.left)<= $(this).position().left + 32)){
-                    if($(this).is( ".coin-block" )){
-                        ok = 1;
-                        $("#coin_sound")[0].pause();
-                        $("#coin_sound")[0].currentTime = 0;
-                        $("#coin_sound")[0].play();
-                        addCoin();
-                        $(this).addClass("empty-block");
-                        $(this).removeClass("coin-block");
-                    }
-                    else{
-                        $("#jump_sound")[0].pause();
-                        $("#bump_sound")[0].pause();
-                        $("#bump_sound")[0].currentTime = 0;
-                        $("#bump_sound")[0].play();
-                    }
+            if((( (charPos.top) - 135 <= ($(this).position().top + 32)) && ((charPos.left) + 23 >= $(this).position().left)) && ((charPos.left)<= $(this).position().left + 32)){
+                if($(this).is( ".coin-block" )){
+                    ok = 1;
+                    $("#coin_sound")[0].pause();
+                    $("#coin_sound")[0].currentTime = 0;
+                    $("#coin_sound")[0].play();
+                    addCoin();
+                    $(this).addClass("empty-block");
+                    $(this).removeClass("coin-block");
+                }
+                else{
+                    $("#jump_sound")[0].pause();
+                    $("#bump_sound")[0].pause();
+                    $("#bump_sound")[0].currentTime = 0;
+                    $("#bump_sound")[0].play();
+                }
             }
         });
 
@@ -103,10 +102,10 @@ function jump(condition){
         $(".character img").attr('src', 'img/MarioJumping.png');
         $("#jump_sound")[0].pause();
         $("#jump_sound")[0].currentTime = 0;
-        $(".character").animate({"bottom": "+=135px"}, 200, "linear");
+        $(".character").animate({"top": "-=135px"}, 200, "linear");
         $("#jump_sound")[0].play();
         topCollision();
-        $(".character").animate({"bottom": "-=135px"}, 200, "linear");
+        $(".character").animate({"top": "+=135px"}, 200, "linear");
 
         setTimeout('$(".character img").attr("src", "img/MarioStanding.jpg")',200);
     }
@@ -119,9 +118,11 @@ function death(){
         $("#death_sound")[0].play();
         $(".gameOver").show();
         $(".character img").attr('src', 'img/MarioDeath.png');
-        $(".character").animate({"bottom": "+=10%"}, 1000, "linear");
-        $(".character").animate({"bottom": "-=100%"}, 1000, "linear");
+        $(".character").animate({"top": "-=10%"}, 1000, "linear");
+        $(".character").animate({"top": "+=100%"}, 1000, "linear");
         setTimeout('$(".character").remove()', 2000);
+        $(".timer").hide();
+        $(".coins").hide();
 }
 
 function win(){
@@ -134,15 +135,15 @@ function win(){
     $("#death_sound").remove();
     $(".win").show();
     $(".timer").hide();
+    $(".coins").hide();
 }
 
 function game(){
     $("#soundtrack")[0].play();
     $(document).keydown(function(event){
         var charPos= $('.character').position();
-        console.log(charPos);
         if (event.keyCode == '39') {
-            if(!frontCollision()){
+            if(true){
                 if(charPos.left >= leftLimit && charPos.left <= initialPosition && charPos.left <= endGame){
                     forward(condition);
                 }
