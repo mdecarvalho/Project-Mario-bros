@@ -11,6 +11,7 @@
 <body>
         <audio  src="sounds/Mario.mp3" loop="loop" id="soundtrack"></audio>
         <audio  src="sounds/saut.wav" id="jump_sound"></audio>
+        <audio  src="sounds/coin.wav" id="coin_sound"></audio>
         <audio  src="sounds/Hurry.mp3" id="hurry_sound"></audio>
         <audio  src="sounds/Player%20Dies.mp3" id="death_sound"></audio>
         <audio  src="sounds/Hurry%20Overworld.mp3" id="hurry_soundtrack" loop="loop"></audio>
@@ -18,10 +19,10 @@
 
     <div class="container">
         <div class="timer"></div>
-        <div class="character">
-            <img src="img/MarioStanding.jpg" alt="Mario">
-        </div>
         <div id="background"alt="background">
+            <div class="character">
+                <img src="img/MarioStanding.jpg" alt="Mario">
+            </div>
             <div class="coin-box" id="coin-box1"></div>
             <div class="coin-box" id="coin-box2"></div>
             <div class="coin-box" id="coin-box3"></div>
@@ -43,15 +44,14 @@
             <div class="pipe small-pipe" id="pipe6"></div>
         </div><!-- div.background -->
 
-        <div class="character">
-            <img src="img/MarioStanding.jpg" alt="Mario">
-        </div>
         <div class="win">
             <img src="img/youwinblanc.png" alt="win" height="150px" width="150px">
         </div>
+
         <div class="gameOver">
             <img src="img/gameOver.png" alt="win" height="100" width="300px">
         </div>
+        
     </div><!-- div.container -->
 
     <script src="js/jquery.js"></script>

@@ -1,11 +1,23 @@
-var condition = 1; // valeur qui évite le spam sur le traitement de keydown
-var sec = 65; ////MAX time of the game
+var condition = 1; // variable use to avoid the flood
+var sec = 180; ////MAX time of the game
+var initialPosition = 235; // initialization of the
+var leftLimit = 0;
+var endGame = 6525;
 
 function hurrySound(){
     $("#soundtrack")[0].pause();
     $("#hurry_sound")[0].play();
     setTimeout('$("#hurry_sound")[0].pause();', 2499);
     setTimeout('$("#hurry_soundtrack")[0].play();', 2500);
+}
+
+function collision(){
+        ok = 0;
+        if( (((charPos.left) + 23 >= $('div').position().left)) && ((charPos.left) + 38 <= $('div').position().left +55)&& (charPos.top == $('div').position().top + 32)){
+                ok = 1;
+                $("#coin_sound")[0].play();
+        }
+        return ok;
 }
 
 function forward(condition){
@@ -15,12 +27,22 @@ function forward(condition){
         $(".character")
             .css({transform: 'rotateY(360deg)'})
             .animate({left: '+=5'}, 5 , "linear");
+        if($('.character').position().left >= endGame){
+            win();
+        }
+        if ($('.character').position().left >235) {
+            leftLimit = $('.character').position().left - 235;
+        }
 }
 
 function backward(condition, charPos){
     if(condition == 1){
         $(".character img").attr('src', 'img/Mario.gif');
     }
+    if($('.character').position().left > initialPosition){
+        initialPosition = $('.character').position().left;
+    }
+
      if(charPos.left > 0 ){
          $(".character")
             .attr('src','img/Mario.gif')
@@ -53,31 +75,35 @@ function death(){
         setTimeout('$(".character").remove()', 2000);
 }
 
+function win(){
+    $("#jump_sound").remove();
+    $("#soundtrack")[0].pause();
+    $("#hurry_soundtrack")[0].pause();
+    $("#ending_sound")[0].play();
+    $(".character").hide();
+    $("character").remove();
+    $("#death_sound").remove();
+    $(".win").show();
+    $(".timer").hide();
+}
+
 function game(){
     $("#soundtrack")[0].play();
     $(document).keydown(function(event){
         var charPos= $('.character').position();
+        console.log(charPos);
+        console.log(leftLimit);
         if (event.keyCode == '39') {
-            if((charPos.left >= 0 && charPos.left <= 230) || $('#background').css('left') == "-6280px"){
-                //fin de la map situé à -6280px et position du personnage à 240px
-                if(($('#background').css('left') >= "-6280px") && charPos.left == 240){
-                    $("#jump_sound").remove();
-                    $("#soundtrack")[0].pause();
-                    $("#hurry_soundtrack")[0].pause();
-                    $("#ending_sound")[0].play();
-                    $(".character").hide();
-                    $("character").remove();
-                    $("#death_sound").remove();
-                    $(".win").show();
-                    $(".timer").hide();
-                }
-                else{
-                    forward(condition);
-                }
+            if(charPos.left >= leftLimit && charPos.left <= initialPosition && charPos.left <= endGame){
+                forward(condition);
             }
             else{
                 // défilement du background au lieu du personnage lorsqu'il arrive au centre de l'écran
-                $("#background").animate({left:'-=5'},1);
+                if(charPos.left != 0 && charPos.left < endGame){
+                    $("#background").animate({left:'-=5'},1);
+
+                }
+                forward(condition);
                 if( condition == 1){
                     $(".character img").attr('src', 'img/Mario.gif');
                 }
@@ -85,7 +111,9 @@ function game(){
         }
 
         if (event.keyCode == '37') {
-            backward(condition, charPos);
+            if (charPos.left > leftLimit + 5) {
+                backward(condition, charPos);
+            }
         }
 
         if (event.keyCode == '38'){
