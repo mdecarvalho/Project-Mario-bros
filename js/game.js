@@ -1,7 +1,8 @@
 var condition = 1; // variable use to avoid the flood
-var sec = 180; ////MAX time of the game
+var sec = 180; //MAX time of the game
 var initialPosition = 235; // initialization of the
 var leftLimit = 0;
+var alive = 1;
 var endGame = 6525;
 var coins = 0; //nupmber of coins collected
 
@@ -117,6 +118,7 @@ function jump(condition){
 }
 
 function death(){
+        alive = 0;
         $("#soundtrack").remove();
         $("#hurry_soundtrack").remove();
         $("#jump_sound").remove();
@@ -154,7 +156,7 @@ function game(){
                 }
                 else{
                     // défilement du background au lieu du personnage lorsqu'il arrive au centre de l'écran
-                    if(charPos.left != 0 && charPos.left < endGame){
+                    if(charPos.left != 0 && charPos.left < endGame && alive == 1){
                         $("#background").animate({left:'-=5'},1);
 
                     }
